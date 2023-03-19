@@ -2,28 +2,44 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\GuideUserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GuideUserRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'guideuser:item']),
+        new GetCollection(normalizationContext: ['groups' => 'guideuser:list'])
+    ],
+    paginationEnabled: false,
+)]
 class GuideUser
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $nombre = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $texto_inicial = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $texto_adicional = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $url_img = null;
 
     public function __toString(): string
