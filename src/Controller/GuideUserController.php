@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GuideUserController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
+    #[Route('/admin', name: 'homepage')]
     public function index(): Response
     {
         return new Response(<<<EOF
