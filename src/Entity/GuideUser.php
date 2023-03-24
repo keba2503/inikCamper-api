@@ -42,6 +42,15 @@ class GuideUser
     #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $url_img = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $linkReference = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $TextoAdicional2 = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $TextoAdicional3 = null;
+
     public function __toString(): string
     {
         return (string)$this->getNombre();
@@ -88,6 +97,30 @@ class GuideUser
         return $this;
     }
 
+    public function getTextoAdicional2(): ?string
+    {
+        return $this->TextoAdicional2;
+    }
+
+    public function setTextoAdicional2(?string $TextoAdicional2): self
+    {
+        $this->TextoAdicional2 = $TextoAdicional2;
+
+        return $this;
+    }
+
+    public function getTextoAdicional3(): ?string
+    {
+        return $this->TextoAdicional3;
+    }
+
+    public function setTextoAdicional3(?string $TextoAdicional3): self
+    {
+        $this->TextoAdicional3 = $TextoAdicional3;
+
+        return $this;
+    }
+
     public function getUrlImg(): ?string
     {
         return $this->url_img;
@@ -96,6 +129,18 @@ class GuideUser
     public function setUrlImg(?string $url_img): self
     {
         $this->url_img = $url_img;
+
+        return $this;
+    }
+
+    public function getLinkReference(): ?string
+    {
+        return $this->linkReference;
+    }
+
+    public function setLinkReference(?string $linkReference): self
+    {
+        $this->linkReference = $linkReference;
 
         return $this;
     }
