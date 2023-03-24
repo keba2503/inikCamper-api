@@ -38,18 +38,18 @@ class GuideUser
     #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $texto_adicional = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $TextoAdicional2 = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $TextoAdicional3 = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['guideuser:list', 'guideuser:item'])]
     private ?string $url_img = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $linkReference = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $TextoAdicional2 = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $TextoAdicional3 = null;
 
     public function __toString(): string
     {
