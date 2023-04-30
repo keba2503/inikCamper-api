@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\GuideUserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +16,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(normalizationContext: ['groups' => 'guideuser:item']),
-        new GetCollection(normalizationContext: ['groups' => 'guideuser:list'])
+        new GetCollection(normalizationContext: ['groups' => 'guideuser:list']),
+        new Post(normalizationContext: ['groups' => 'guideuser:item']),
+        new Put(normalizationContext: ['groups' => 'guideuser:item'])
     ],
     paginationEnabled: false,
 )]

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Json;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
 class Blog
@@ -20,26 +21,14 @@ class Blog
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $url = null;
-
     #[ORM\Column(length: 255)]
     private ?string $user = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $button = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $text = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $textTree = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $textTwo = null;
+    #[ORM\Column(type: Types::JSON)]
+    private ?json $image = null;
 
     public function getId(): ?int
     {
@@ -70,30 +59,6 @@ class Blog
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
     public function getUser(): ?string
     {
         return $this->user;
@@ -102,18 +67,6 @@ class Blog
     public function setUser(string $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getButton(): ?string
-    {
-        return $this->button;
-    }
-
-    public function setButton(string $button): self
-    {
-        $this->button = $button;
 
         return $this;
     }
@@ -130,26 +83,14 @@ class Blog
         return $this;
     }
 
-    public function getTextTree(): ?string
+    public function getImage(): ?string
     {
-        return $this->textTree;
+        return $this->image;
     }
 
-    public function setTextTree(string $textTree): self
+    public function setImage(string $image): self
     {
-        $this->textTree = $textTree;
-
-        return $this;
-    }
-
-    public function getTextTwo(): ?string
-    {
-        return $this->textTwo;
-    }
-
-    public function setTextTwo(string $textTwo): self
-    {
-        $this->textTwo = $textTwo;
+        $this->image = $image;
 
         return $this;
     }
