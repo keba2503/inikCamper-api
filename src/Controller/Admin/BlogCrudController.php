@@ -43,7 +43,6 @@ class BlogCrudController extends AbstractCrudController
         yield TextField::new('title', 'Título');
         yield TextField::new('user', 'Usuario');
         yield TextareaField::new('text', 'Texto')->setFormTypeOptions(['attr' => ['rows' => 10]]);
-        yield ArrayField::new('image', 'Imagen')->setFormType(CollectionType::class)
-            ->setFormTypeOptions(['entry_type' => TextField::class, 'allow_add' => true, 'allow_delete' => true]);
+        yield ArrayField::new('image', 'Imagen')->setFormTypeOptions(['entry_type' => TextField::class, 'allow_add' => true, 'allow_delete' => true]);
     }
 }

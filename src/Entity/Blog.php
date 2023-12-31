@@ -3,11 +3,25 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\Json;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'blog:item']),
+        new GetCollection(normalizationContext: ['groups' => 'blog:list']),
+        new Post(normalizationContext: ['groups' => 'blog:item']),
+        new Put(normalizationContext: ['groups' => 'blog:item'])
+    ],
+    paginationEnabled: false,
+)]
 class Blog
 {
     #[ORM\Id]
@@ -28,8 +42,20 @@ class Blog
     private ?string $text = null;
 
     #[ORM\Column(type: Types::JSON)]
-    private ?json $image = null;
+    private ?array $image = null;
 
+
+    public function getImage(): ?array
+    {
+        return $this->image;
+    }
+
+    public function setImage(array $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -83,15 +109,4 @@ class Blog
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }
