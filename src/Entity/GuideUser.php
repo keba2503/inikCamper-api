@@ -55,9 +55,12 @@ class GuideUser
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $linkReference = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $language = null;
+
     public function __toString(): string
     {
-        return (string)$this->getNombre();
+        return (string) $this->getNombre();
     }
 
     public function getId(): ?int
@@ -145,6 +148,18 @@ class GuideUser
     public function setLinkReference(?string $linkReference): self
     {
         $this->linkReference = $linkReference;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?string $language): self
+    {
+        $this->language = $language;
 
         return $this;
     }
