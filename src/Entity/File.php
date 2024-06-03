@@ -14,7 +14,7 @@ class File
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $filename = null;
+    private ?string $link = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -30,14 +30,14 @@ class File
         return $this->id;
     }
 
-    public function getFilename(): ?string
+    public function getLink(): ?string
     {
-        return $this->filename;
+        return $this->link;
     }
 
-    public function setFilename(string $filename): self
+    public function setLink(string $link): self
     {
-        $this->filename = $filename;
+        $this->link = $link;
 
         return $this;
     }
