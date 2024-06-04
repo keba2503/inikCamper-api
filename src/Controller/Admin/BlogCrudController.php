@@ -7,10 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class BlogCrudController extends AbstractCrudController
 {
@@ -42,7 +41,7 @@ class BlogCrudController extends AbstractCrudController
         yield DateField::new('date', 'Fecha')->setFormat('d/m/Y')->setFormTypeOptions(['html5' => true]);
         yield TextField::new('title', 'Título');
         yield TextField::new('user', 'Usuario');
-        yield TextareaField::new('text', 'Texto')->setFormTypeOptions(['attr' => ['rows' => 10]]);
+        yield TextEditorField::new('text', 'Texto')->setFormTypeOptions(['attr' => ['rows' => 10]]);
         yield ArrayField::new('image', 'Imagen')->setFormTypeOptions(['entry_type' => TextField::class, 'allow_add' => true, 'allow_delete' => true]);
     }
 }
